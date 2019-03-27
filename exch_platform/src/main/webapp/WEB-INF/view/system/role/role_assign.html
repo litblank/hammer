@@ -1,0 +1,72 @@
+@layout("/common/_container.html"){
+
+
+<script type="text/javascript">
+    $(function () {
+        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+
+        $("#btn_close").bind("click", function () {
+            parent.layer.close(index);
+        });
+
+        $("#btn_save").bind("click", function () {
+            var ids = Feng.zTreeCheckedNodes("zTree");
+            var ajax = new $ax(Feng.ctxPath + "/role/setAuthority", function (data) {
+                Feng.success("分配角色成功!");
+                window.parent.Role.table.refresh();
+                parent.layer.close(index);
+            }, function (data) {
+                Feng.error("分配角色失败!"
+                    + data.responseJSON.message + "!");
+            });
+            ajax.set("roleId", "${roleId}");
+            ajax.set("ids", ids);
+            ajax.start();
+        });
+
+        initZtree();
+    });
+
+    function initZtree() {
+        var setting = {
+            check: {
+                enable: true,
+                chkboxType: { "Y": "ps", "N": "ps" }
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+
+        var ztree = new $ZTree("zTree", "/menu/menuTreeListByRoleId/"
+            + "${roleId}");
+        ztree.setSettings(setting);
+        ztree.init();
+    }
+</script>
+
+
+<!-- 配置grid -->
+<div class="container" style="height: 100%;padding: 0 !important;text-align: center !important;margin: 0 10px; background: #FFF;">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>角色：${roleName!} 的 菜单权限</h5>
+            </div>
+            <div class="ibox-content">
+                <ul id="zTree" class="ztree"></ul>
+            </div>
+        </div>
+        <div class="layer-btn-w">
+            <button class="btn btn-sm btn-primary" type="button" id="btn_save">
+                <i class="ace-icon fa fa-check bigger-110"></i>保存
+            </button>
+            <button class="btn btn-sm btn-default" type="button" id="btn_close">
+                <i class="ace-icon fa fa-close bigger-110"></i>关闭
+            </button>
+        </div>
+    </div>
+</div>
+@}

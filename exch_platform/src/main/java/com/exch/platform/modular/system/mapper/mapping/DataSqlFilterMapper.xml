@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exch.platform.modular.system.mapper.DataSqlFilterMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.exch.platform.modular.system.entity.DataSqlFilter">
+        <id column="id" property="id" />
+        <result column="role_id" property="roleId" />
+        <result column="method_id" property="methodId" />
+        <result column="filter_sql" property="filterSql" />
+        <result column="depict" property="depict" />
+        <result column="creater_id" property="createrId" />
+        <result column="creater_date" property="createrDate" />
+        <result column="modify_id" property="modifyId" />
+        <result column="modify_date" property="modifyDate" />
+        <result column="is_delete" property="isDelete" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, role_id, method_id, filter_sql, depict, creater_id, creater_date, modify_id, modify_date, is_delete
+    </sql>
+
+</mapper>

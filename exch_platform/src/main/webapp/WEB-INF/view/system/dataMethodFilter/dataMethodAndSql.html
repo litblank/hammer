@@ -1,0 +1,73 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-4" style="padding-right: 0;padding-left: 0;">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>查询拦截方法</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="DataMethodFilter.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="DataMethodFilterTableToolbar" role="group">
+                            @if(shiro.hasPermission("/dataMethodFilter/add")){
+                            <#button name="添加" icon="fa-plus" clickFun="DataMethodFilter.openAddDataMethodFilter()"/>
+                            @}
+                            @if(shiro.hasPermission("/dataMethodFilter/update")){
+                            <#button name="修改" icon="fa-edit" clickFun="DataMethodFilter.openDataMethodFilterDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/dataMethodFilter/delete")){
+                            <#button name="删除" icon="fa-remove" clickFun="DataMethodFilter.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="DataMethodFilterTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8" style="padding-right: 0;">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>拦截数据SQL</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <br/>
+                            <br/>
+                        </div>
+                        <div class="hidden-xs" id="DataSqlFilterTableToolbar" role="group">
+                            @if(shiro.hasPermission("/dataSqlFilter/add")){
+                            <#button name="添加" id="button_1" icon="fa-plus" clickFun="DataSqlFilter.openAddDataSqlFilter()"/>
+                            @}
+                            @if(shiro.hasPermission("/dataSqlFilter/update")){
+                            <#button name="修改" id="button_2" icon="fa-edit" clickFun="DataSqlFilter.openDataSqlFilterDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/dataSqlFilter/delete")){
+                            <#button name="删除" id="button_3" icon="fa-remove" clickFun="DataSqlFilter.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="DataSqlFilterTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/dataSqlFilter/dataSqlFilter.js"></script>
+<script src="${ctxPath}/static/modular/system/dataMethodFilter/dataMethodFilter.js"></script>
+@}

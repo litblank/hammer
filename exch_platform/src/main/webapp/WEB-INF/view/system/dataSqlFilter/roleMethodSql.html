@@ -1,0 +1,52 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-8" style="padding-right: 0;padding-left: 0;">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>角色</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="roleName" name="角色名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="Role.search()"/>
+                            </div>
+                        </div>
+                        <#table id="roleTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4" style="padding-right: 0;">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>角色与拦截方法SQL绑定</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="hidden-xs" id="DataMethodFilterTableToolbar" role="group">
+                        </div>
+
+
+                        <table id="DataMethodFilterTable" data-mobile-responsive="true" data-click-to-select="true">
+                            <thead>
+                            <tr>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/dataMethodFilter/roleFilter.js"></script>
+<script src="${ctxPath}/static/modular/system/dataMethodFilter/roleMethodSql.js"></script>
+@}

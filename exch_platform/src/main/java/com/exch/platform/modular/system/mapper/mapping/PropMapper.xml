@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exch.platform.modular.system.mapper.PropMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.exch.platform.modular.system.entity.Prop">
+        <id column="id" property="id" />
+        <result column="version" property="version" />
+        <result column="app_id" property="appId" />
+        <result column="prop_name" property="propName" />
+        <result column="prop_desc" property="propDesc" />
+        <result column="prop_value" property="propValue" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, version, app_id, prop_name, prop_desc, prop_value, remark
+    </sql>
+
+</mapper>

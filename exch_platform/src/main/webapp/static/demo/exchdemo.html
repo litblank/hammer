@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit"/><!-- 让360浏览器默认选择webkit内核 -->
+
+    <!-- 全局css -->
+    <link rel="shortcut icon" href="/static/favicon.ico">
+
+    <link href="/exch_platform/static/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link href="/exch_platform/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/exch_platform/static/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="/exch_platform/static/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/exch_platform/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="/exch_platform/static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="/exch_platform/static/css/_fstyle.css" rel="stylesheet">
+    <link href="/exch_platform/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/exch_platform/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+    <link href="/exch_platform/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+    <link href="/exch_platform/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css" rel="stylesheet"/>
+
+
+    <!--  兑入兑出样式  -->
+    <link href="exchdemo.css" rel="stylesheet"/>
+    <!--<link href="/exch_platform/static/demo/exchdemo.css" rel="stylesheet"/>-->
+
+
+    <!-- <link href="/static/css/plugins/ztree/demo.css" rel="stylesheet"> -->
+
+    <!-- 全局js -->
+    <!--    <script src="/static/js/jquery.min.js?v=2.1.4"></script>
+        <script src="/static/js/bootstrap.min.js?v=3.3.6"></script>
+        <script src="/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+        <script src="/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+        <script src="/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+        <script src="/static/js/plugins/validate/zh_CN.js"></script>
+        <script src="/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+        <script src="/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+        <script src="/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js"></script>
+        <script src="/static/js/plugins/layer/layer.js"></script>
+        <script src="/static/js/plugins/chosen/chosen.jquery.js"></script>
+        <script src="/static/js/plugins/iCheck/icheck.min.js"></script>
+        <script src="/static/js/plugins/laydate/laydate.js"></script>
+        <script src="/static/js/plugins/webuploader/webuploader.min.js"></script>
+        <script src="/static/js/common/ajax-object.js"></script>
+        <script src="/static/js/common/bootstrap-table-object.js"></script>
+        <script src="/static/js/common/tree-table-object.js"></script>
+        <script src="/static/js/common/web-upload-object.js"></script>
+        <script src="/static/js/common/ztree-object.js"></script>
+        <script src="/static/js/common/Feng.js"></script>-->
+
+    <style type="text/css">
+        table {
+            width: 100px;
+            table-layout: fixed; /* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+        }
+
+        td {
+            width: 100%;
+            word-break: keep-all; /* 不换行 */
+            white-space: nowrap; /* 不换行 */
+            overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
+            text-overflow: ellipsis; /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/
+        }
+    </style>
+
+</head>
+
+<body class=" fixed-nav">
+<div class="container-fluid" style="">
+    <div class="row" style="">
+        <div class="col-sm-2" style="margin: 0 auto" id="leftDiv">
+            <ul class="exchList" style="min-height: 334px">
+            <li class="exchListItem">
+            <p class="exchListTit">现钞-兑出业务</p>
+            <div class="moneyBox">
+            <p class="moneryCha"><span>人民币</span><span class="jtIcon"></span><span>新台币</span></p>
+            <p class="moneyNub"><span>1109.75</span><span class="zw"></span><span>5000.00</span></p>
+            </div>
+            <div class="ovfh">
+            <p class="zmj"><span>折美金额：</span><span>620.8</span></p>
+            <p class="eitBtn">
+            <button class="btn btn-primary mr10">修改</button>
+            <button class="btn btn-danger mr10">删除</button>
+            </p>
+            </div>
+            </li>
+            </ul>
+            <div class="exchList-footer">
+
+                <button class="btn btn-primary mr10">成交并打印水单</button>
+
+            </div>
+        </div>
+
+        <div id="midDiv" class="col-sm-7">
+            <form class="form-horizontal marg">
+                <div class="BasForm">
+                    <div class="row form-style-title">
+                        <div class="form-group" style="margin-bottom: 0">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4" style="padding-top: 4px">业务类型</label>
+                                <label class="col-sm-8 inline">
+                                    <input type="radio"
+                                           name="validStatus" id="3232" value="1"
+                                           checked="checked"> 现钞业务
+
+                                    <input type="radio"
+                                           name="validStatus" id="5454" value="1"
+                                           checked="checked"> 旅之业务
+                                </label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">当前类型</label>
+                                <label class="inline col-sm-8 text-danger" style="margin-top:4px">待确定</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-style">
+                        <div class="form-group " style="margin-bottom: 0">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <label class="control-label col-sm-4">收取币种</label>
+                                    <div class="controls col-sm-8">
+                                        <select class="form-control" style="width:100%">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="control-label col-sm-4"></label>
+                                    <div class="controls col-sm-8">
+                                        <div class="currencyImg">
+                                            <img src="" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <label class="control-label col-sm-4">目标币种</label>
+                                    <div class="controls col-sm-8">
+                                        <select class="form-control" style="width:100%">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="control-label col-sm-4"></label>
+                                    <div class="controls col-sm-8">
+                                        <div class="currencyImg">
+                                            <img src="" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-style">
+                        <div class="form-group ">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">国家/地区</label>
+                                <div class="controls col-sm-8">
+                                    <select class="form-control" style="width:100%">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">证件类型</label>
+                                <div class="controls col-sm-8">
+                                    <select class="form-control" style="width:100%">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">证件号</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">补充证件号</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">姓名</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">手机号</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--   原始状态 -->
+                <div class="BasForm none">
+                    <p>待确定业务</p>
+                </div>
+                <!--  兑入 -->
+                <div class="Addin none">
+                    <div class="row form-style" style="border:none">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">结汇人民币账户</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">外币金额</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">水单号</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">应付人民币</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">手续费</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="col-sm-6" style="width: 100%; padding-top: 4px">
+                                    <input type="radio" class="ml12 inline" name="validStatus" id="222" value="1"
+                                           checked="checked"> 10元
+                                    <input type="radio" class="ml12 inline" name="validStatus" id="333" value="1"
+                                           checked="checked"> 20元
+                                    <input type="radio" class="ml12 inline" name="validStatus" id="444" value="1"
+                                           checked="checked"> 30元
+                                    <input type="radio" class="ml12 inline" name="validStatus" id="555" value="1"
+                                           checked="checked"> 40元
+                                    <input type="radio" class="ml12 inline" name="validStatus" id="666" value="1"
+                                           checked="checked"> 50元
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                            </div>
+                            <div class="col-sm-6 control-label">
+                                <label class="col-sm-4 inline" style="padding-top: 4px">
+                                    <input type="radio"
+                                           name="validStatus" id="999" value="1"
+                                           checked="checked"> 免手续费
+                                </label>
+                                <div class="controls col-sm-8">
+                                    <select class="form-control" style="width:100%">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">资金属性</label>
+                                <div class="controls col-sm-8">
+                                    <select class="form-control" style="width:100%">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label class="control-label col-sm-2">备注</label>
+                                <div class="controls col-sm-10">
+                                    <input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 兑出 -->
+                <div class="Cash none">
+                    <div class="row form-style">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">预计用汇时间</label>
+                                <div class="controls col-sm-3">
+                                    <select class="form-control" style="width:100%">
+                                        <option>2019年</option>
+                                        <option>2018年</option>
+                                        <option>2017年</option>
+                                        <option>2016年</option>
+                                        <option>2015年</option>
+                                    </select>
+                                </div>
+                                <div class="controls col-sm-3">
+                                    <select class="form-control" style="width:100%">
+                                        <option>1月</option>
+                                        <option>2月</option>
+                                        <option>3月</option>
+                                        <option>4月</option>
+                                        <option>5月</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">购汇用途</label>
+                                <div class="controls col-sm-3">
+                                    <select class="form-control" style="width:100%" onchange="change(this.value)">
+                                        <option>请选择</option>
+                                        <option>因私旅游</option>
+                                        <option>境外留学</option>
+                                        <option>公务及商务出国</option>
+                                        <option>探亲</option>
+                                        <option>境外就医</option>
+                                        <option>货物贸易</option>
+                                        <option>非投资类保险</option>
+                                        <option>咨询服务</option>
+                                        <option>职工报酬和赡家款</option>
+                                        <option>专有权利使用费和特许费</option>
+                                        <option>其他经常转移</option>
+                                        <option>投资收益</option>
+                                        <option>其他服务</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="useList">
+                            <div id="use1" class="none">
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label class="control-label col-sm-4">预计境外停留期限</label>
+                                        <div class="controls col-sm-3">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="controls col-sm-3">
+                                            <select class="form-control" style="width:100%">
+                                                <option>天</option>
+                                                <option>月</option>
+                                                <option>年</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label class="control-label col-sm-4">目的地国家/地区</label>
+                                        <div class="controls col-sm-8">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label class="control-label col-sm-4">旅行方式</label>
+                                        <label class="col-sm-8 inline">
+                                            <input type="radio"
+                                                   name="validStatus" id="888" value="1"
+                                                   checked="checked"> 跟团
+
+                                            <input type="radio"
+                                                   name="validStatus" id="323" value="1"
+                                                   checked="checked"> 自由行
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="use2" class="none">
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label class="control-label col-sm-4">学校名称</label>
+                                        <div class="controls col-sm-8">
+                                            <input type="text" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="control-label col-sm-4">留学地国家/地区</label>
+                                        <div class="controls col-sm-8">
+                                            <input type="text" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label class="control-label col-sm-4">年学费币种/金额</label>
+                                        <div class="controls col-sm-8">
+                                            <input type="text" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="control-label col-sm-4">年生活费币种/金额</label>
+                                        <div class="controls col-sm-8">
+                                            <input type="text" class="form-control"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--<div class="row form-style" style="border:none;height: 182px; overflow: auto;">-->
+                    <div class="row form-style">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">支付方式</label>
+                                <div class="controls col-sm-8">
+                                    <select class="form-control" style="width:100%">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">人民币金额</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">外币金额</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">人民币找零</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">水单号</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">结汇水单号</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">手续费</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="col-sm-6" style="width: 100%;">
+                                    <input type="radio" class="ml12 inline" name="validStatus" id="1" value="1"
+                                           checked="checked"> 10元
+                                    <input type="radio" class="ml12 inline" name="validStatus" id="2" value="1"
+                                           checked="checked"> 20元
+                                    <input type="radio" class="ml12 inline" name="validStatus" id="3" value="1"
+                                           checked="checked"> 30元
+                                    <input type="radio" class="ml12 inline" name="validStatus" id="4" value="1"
+                                           checked="checked"> 40元
+                                    <input type="radio" class="ml12 inline" name="validStatus" id="5" value="1"
+                                           checked="checked"> 50元
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                            </div>
+                            <div class="col-sm-6 control-label">
+                                <label class="col-sm-4 inline">
+                                    <input type="radio"
+                                           name="validStatus" id="12" value="1"
+                                           checked="checked"> 免手续费
+                                </label>
+                                <div class="controls col-sm-8">
+                                    <select class="form-control" style="width:100%">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">资金属性</label>
+                                <div class="controls col-sm-8">
+                                    <select class="form-control" style="width:100%">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">购汇提钞金额</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">会出资金(包括外汇票据)金额</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">购汇人民币账户</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">旅行支票金额</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">存入个人外汇账户金额</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="control-label col-sm-4">个人外汇账户</label>
+                                <div class="controls col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label class="control-label col-sm-2">备注</label>
+                                <div class="controls col-sm-9">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- 兑入兑出 -->
+                <div class="AddinAndCash none">
+                </div>
+                <div class="form-footer row">
+                    <button class="btn btn-primary mr10 btn-sm">保存订单</button>
+                    <button class="btn btn-primary mr10 btn-sm">选择预约订单</button>
+                    <button class="btn btn-primary mr10 btn-sm">重置订单信息</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-3" id="rightDiv">
+            <!--  现钞业务 -->
+            <div class="form-style" style="border:none">
+
+                <label style="text-align: right">外管购汇信息</label>
+                <div class="disBorder"></div>
+
+
+                <label style="text-align: right">外管购汇信息</label>
+                <div class="disBorder h4"></div>
+
+
+            </div>
+            <!--  旅之业务 -->
+            <div class=""></div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="/exch_platform/static/js/jquery.min.js?v=2.1.4"></script>
+<script src="/exch_platform/static/js/bootstrap.min.js?v=3.3.6"></script>
+<script>
+    var ulLength = $('.exchList').length;
+    if (ulLength == 0) {
+        $('#leftDiv').removeClass('col-sm-2')
+        $('.exchList-footer').addClass('none')
+        $('#midDiv').removeClass('col-sm-7').addClass('col-sm-8')
+        $('#rightDiv').removeClass('col-sm-3').addClass('col-sm-4')
+    }
+
+    function change(val) {
+        if (val == '因私旅游') {
+            $('#useList #use1').removeClass('none').siblings().addClass('none')
+
+            return
+        } else if (val == '境外留学') {
+
+            console.log($('#use2'))
+            $('#useList #use2').removeClass('none').siblings().addClass('none')
+
+            return
+        } else if (val == '公务及商务出国') {
+            $('#useList #use3').removeClass('none').siblings().addClass('none')
+
+        } else if (val == '探亲') {
+            $('#useList #use4').removeClass('none').siblings().addClass('none')
+
+        } else if (val == '境外就医') {
+            $('#useList #use5').removeClass('none').siblings().addClass('none')
+
+        } else if (val == '货物贸易') {
+            $('#useList #use6').removeClass('none').siblings().addClass('none')
+
+        } else if (val == '非投资类保险') {
+            $('#useList #use7').removeClass('none').siblings().addClass('none')
+
+        } else if (val == '咨询服务') {
+            $('#useList #use8').removeClass('none').siblings().addClass('none')
+
+        } else if (val == '职工报酬和赡家款') {
+            $('#use9').removeClass('none').siblings().addClass('none')
+
+        } else if (val == '专有权利使用费和特许费') {
+            $('#useList #use10').removeClass('none').siblings().addClass('none')
+
+        } else if (val == '投资收益') {
+            $('#useList #use11').removeClass('none').siblings().addClass('none')
+
+        } else if (val == '其他经常转移') {
+            $('#useList #use12').removeClass('none').siblings().addClass('none')
+
+        } else if (val == '其他服务') {
+            $('#useList #use13').removeClass('none').siblings().addClass('none')
+
+        }
+    }
+</script>

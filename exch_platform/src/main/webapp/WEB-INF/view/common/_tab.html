@@ -1,0 +1,55 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="nav-close"><i class="fa fa-times-circle"></i>
+    </div>
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            @for(title in titles){
+            @if(tool.isEmpty(title.children)){
+            <li>
+                <a class="J_menuItem" href="${ctxPath}${title.url}" name="tabMenuItem">
+                    <i class="fa ${title.icon}"></i>
+                    <span class="nav-label">${title.name}</span>
+                </a>
+            </li>
+            @}else{
+            <li>
+                <a href="#">
+                    <i class="fa ${title.icon}"></i>
+                    <span class="nav-label">${title.name}</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    @for(subTitle in title.children){
+                    @if(tool.isEmpty(subTitle.children)){
+                    <li>
+                        <a class="J_menuItem" href="${ctxPath}${subTitle.url}" name="tabMenuItem">
+                            <i class="fa ${subTitle.icon}"></i>
+                           <span class="nav-label">${subTitle.name}</span>
+
+                        </a>
+                    </li>
+                    @}else{
+                    <li>
+                        <a href="#">${subTitle.name} <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            @for(thirdTitle in subTitle.children){
+                            <li>
+
+                                <a class="J_menuItem" href="${ctxPath}${thirdTitle.url}" name="tabMenuItem">
+                                    <i class="fa ${thirdTitle.icon}"></i>
+                                   <spna class="nav-label"> ${thirdTitle.name}</spna>
+                                </a>
+                            </li>
+                            @}
+                        </ul>
+                    </li>
+                    @}
+                    @}
+                </ul>
+            </li>
+            @}
+            @}
+
+        </ul>
+    </div>
+</nav>

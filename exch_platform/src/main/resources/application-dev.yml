@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    include: commontest
+############## 数据源 配置 ##############
+  datasource:
+    url: jdbc:mysql://10.18.9.25:3306/exch?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    username: root
+    password: 111111
+    filters: wall,mergeStat
+
+#多数据源情况的配置
+exch:
+  muti-datasource:
+    open: false
+    url: jdbc:mysql://127.0.0.1:3306/exch_test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    username: root
+    password: root
+    dataSourceNames:
+    - dataSourceExch
+    - dataSourceBiz

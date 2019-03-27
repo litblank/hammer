@@ -1,0 +1,32 @@
+@layout("/common/_container.html"){
+
+<script>
+    $(function () {
+        var defaultColunms = MgrUser.initColumn();
+        var table = new BSTable("managerTable", "/mgr/assignUser/${roleId}", defaultColunms);
+        table.setPaginationType("client");
+        table.init();
+    });
+</script>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox-content">
+            <div class="row row-lg">
+                <div class="col-sm-12">
+                    <#table id="managerTable"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/user/assignUser.js"></script>
+<script>
+    laydate.render({
+        elem: '#beginTime'
+    });
+    laydate.render({
+        elem: '#endTime'
+    });
+</script>
+@}
+

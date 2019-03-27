@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exch.platform.modular.system.mapper.DataMethodFilterMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.exch.platform.modular.system.entity.DataMethodFilter">
+        <id column="id" property="id" />
+        <result column="method" property="method" />
+        <result column="method_name" property="methodName" />
+        <result column="creater_id" property="createrId" />
+        <result column="creater_date" property="createrDate" />
+        <result column="modify_id" property="modifyId" />
+        <result column="modify_date" property="modifyDate" />
+        <result column="is_delete" property="isDelete" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, method, method_name, creater_id, creater_date, modify_id, modify_date, is_delete
+    </sql>
+
+</mapper>

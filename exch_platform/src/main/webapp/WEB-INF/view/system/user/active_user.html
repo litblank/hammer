@@ -1,0 +1,31 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12" style="padding-right: 0;padding-left: 0;">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>当前登陆用户</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <#table id=""/>
+
+                                <table id="activeUser" data-mobile-responsive="true" data-click-to-select="true">
+                                    <thead>
+                                    <tr>
+
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/user/active_user.js"></script>
+@}

@@ -1,0 +1,54 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5 >所有角色</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <#NameCon id="roleName" name="角色名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="NoticePower.searchRole()"/>
+                            </div>
+                        </div>
+                        <#table id="roleid"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5 id="userh"></h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <#NameCon id="userName" name="用户名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="NoticePower.searchUser()"/>
+                                <#button name="保存" icon="fa-edit" id="updateNoticePower" clickFun="NoticePower.updateNoticePower()" space="true"/>
+                            </div>
+                        </div>
+
+                        <!--<div class="hidden-xs" id="updateNoticePower" role="group">-->
+                            <!--<#button name="保存" icon="fa-edit" id="updateNoticePower" clickFun="NoticePower.updateNoticePower()" space="true"/>-->
+                        <!--</div>-->
+                        <#table id="userid"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/noticePower/noticePower.js"></script>
+@}

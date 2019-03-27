@@ -1,0 +1,34 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <!--<#input id="methodName" readonly="readonly" value="${roleId}" name="查询名称" underline="true"/>-->
+                    <#input id="filterSql" hidden="roleId" hiddenValue="${roleId}" name="过滤SQL" underline="true"/>
+                </div>
+
+                <div class="col-sm-6">
+                    <!--<#input id="method" readonly="readonly"  name="查询Mapper" value="${methodId}" underline="true"/>-->
+                    <#input id="depict" hidden="methodId" hiddenValue="${methodId}" name="SQL描述"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="layer-btn-w">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="DataSqlFilterInfoDlg.addSubmit()"/>
+                    <#buttonGray btnCss="default"  name="取消" id="cancel" icon="fa-eraser" clickFun="DataSqlFilterInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/dataSqlFilter/dataSqlFilter_info.js"></script>
+<script>
+    laydate.render({
+        elem: '#birthday'
+    });
+</script>
+@}

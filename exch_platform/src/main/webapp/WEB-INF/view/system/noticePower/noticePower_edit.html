@@ -1,0 +1,29 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="id" value="${item.id}" underline="true"/>
+                            <#input id="noticeId" name="通知ID" value="${item.noticeId}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="roleId" name="角色ID" value="${item.roleId}" underline="true"/>
+                            <#input id="userId" name="用户ID" value="${item.userId}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="layer-btn-w">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="NoticePowerInfoDlg.editSubmit()"/>
+                    <#buttonGray btnCss="default" name="取消" id="cancel" icon="fa-eraser" clickFun="NoticePowerInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/noticePower/noticePower_info.js"></script>
+@}
