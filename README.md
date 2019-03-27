@@ -10,7 +10,7 @@
 - 配置了Docker自动化部署
 
 # 三、界面
-![页面首页](https://note.youdao.com/yws/api/personal/file/259D0A23A9144137BB3B7A2082A5FED8?method=download&shareKey=ec751df1b2d68b17d4ff8a3bf8774ba7)
+![页面首页](https://note.youdao.com/yws/api/personal/file/13FE718485DE4C1BAE0CD139BD24B44A?method=download&shareKey=ffeed0d0f0a32f63a6c41c1abb9e6d68)
 
 ![工作流](https://note.youdao.com/yws/api/personal/file/E40D679223944571BCA1E4386025A9D6?method=download&shareKey=29d239f4e4d38163644077a971b8237a)
 
